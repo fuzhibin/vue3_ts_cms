@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 冒泡排序 -->
+<script>
+  function bubbleSort(array){
+    for(let i=0;i<array.length;i++){
+      for(let j=0;j<array.length-i-1;j++){
+        if(array[j]>array[j+1]){
+          const current = array[j+1];
+          array[j+1]=array[j];
+          array[j] = current;
+        }
+      }
+    }
+  }
+  const array = [4, 5, 6, 3, 2, 1];
+  bubbleSort(array);
+  console.log("冒泡排序");
+  console.log(array);
+</script>
+
+<!-- 选择排序 -->
+<script>
+  function selectSort(array){
+    for(let i=0;i<array.length;i++){
+      let min = i;
+      for(let j=i+1;j<array.length;j++){
+        if(array[j]<array[min]){
+          min = j;
+        }
+      }
+      const current = array[min];
+      array[min]=array[i];
+      array[i]=current;
+    }
+  }
+  const array1 = [4, 5, 6, 3, 2, 1];
+  selectSort(array1);
+  console.log("选择排序");
+  console.log(array1);
+</script>
+
+<!-- 插入排序 -->
+<script>
+  function insertSort(array){
+    for(let i=1;i<array.length;i++){
+      let j = i-1;
+      while(array[i]<array[j]&&j>=0){
+        j--;
+      }
+      const current = array[j];
+      array[j] =array[i];
+      array[i]=current;
+    }
+  }
+  const array2 = [4, 5, 6,10, 3, 2, 1];
+  selectSort(array2);
+  console.log("插入排序");
+  console.log(array2);
+</script>
+
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 <template>
-  <div class="app">
-    <router-view />
+  <div class="category">
+    <h2>category</h2>
   </div>
 </template>
 
@@ -8,12 +8,11 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "App"
+  name: "category",
+  setup() {
+    return {};
+  }
 });
 </script>
 
-<style lang="less">
-.app {
-  height: 100%;
-}
-</style>
+<style scoped></style>
