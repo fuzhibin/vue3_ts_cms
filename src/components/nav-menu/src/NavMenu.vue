@@ -6,6 +6,7 @@
     </div>
     <el-menu
       class="el-menu-vertical"
+      default-active="39"
       background-color="#0c2135"
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
@@ -19,7 +20,11 @@
               <span>{{ submenu.name }}</span>
             </template>
             <template v-for="item in submenu.children" :key="item.id">
-              <el-menu-item :index="item.id + ''">{{ item.name }}</el-menu-item>
+              <el-menu-item
+                :index="item.id + ''"
+                @click="menuItemClic(item.url)"
+                >{{ item.name }}</el-menu-item
+              >
             </template>
           </el-submenu>
         </template>
@@ -36,7 +41,7 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { useStore } from "@/store";
-
+import { useRouter } from "vue-router";
 export default defineComponent({
   props: {
     menuFold: {
@@ -45,12 +50,16 @@ export default defineComponent({
     }
   },
   name: "NavMenu",
-  setup(props) {
+  setup() {
     const store = useStore();
+    const router = useRouter();
     const userMenus = computed(() => store.state.login.userMenus);
-
+    const menuItemClic = (url: string) => {
+      router.push(url);
+    };
     return {
-      userMenus
+      userMenus,
+      menuItemClic
     };
   }
 });

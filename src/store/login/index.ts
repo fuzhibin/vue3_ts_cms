@@ -8,10 +8,10 @@ import {
 } from "@/service/login";
 import { AccountLoginType } from "@/service/login/types";
 import localCache from "@/utils/cache";
+import menuToRoute from "@/utils/menuToRoute";
 
 import { RootStateType } from "../types";
 import { LoginStateType } from "./types";
-
 const loginModule: Module<LoginStateType, RootStateType> = {
   namespaced: true,
   state() {
@@ -31,6 +31,10 @@ const loginModule: Module<LoginStateType, RootStateType> = {
     },
     changeUserMenus(state, payload: any) {
       state.userMenus = payload;
+      const menusInfo = menuToRoute(payload);
+      menusInfo.forEach((item) => {
+        router.addRoute("main", item);
+      });
     }
   },
   actions: {

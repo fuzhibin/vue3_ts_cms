@@ -8,7 +8,9 @@
         <el-header class="page-header">
           <nav-header @changeMenuFold="changeMenuFold" />
         </el-header>
-        <el-main class="page-content">Main</el-main>
+        <el-main class="page-content">
+          <router-view />
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -87,7 +89,6 @@ export default defineComponent({
 
 .el-main {
   color: #333;
-  text-align: center;
   background-color: #f0f2f5;
 }
 </style>
