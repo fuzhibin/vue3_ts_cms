@@ -1,6 +1,7 @@
 type InputType = "input" | "select" | "password" | "datapicker";
 
 export interface IFormItemType {
+  filed: string;
   type: InputType;
   label: string;
   rules?: any[];

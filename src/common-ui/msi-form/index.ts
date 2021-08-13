@@ -1,4 +1,4 @@
 import MsiForm from "./src/MsiForm.vue";
 
-export * from "./types";
+export * from "./types/types";
 export default MsiForm;

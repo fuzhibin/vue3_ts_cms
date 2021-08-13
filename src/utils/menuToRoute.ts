@@ -1,4 +1,7 @@
 import type { RouteRecordRaw } from "vue-router";
+import { BreadCrumbItemType } from "@/common-ui/breadcrumb";
+
+let firstMenu: any = null;
 export default function (useMenus: any[]): RouteRecordRaw[] {
   const routes: RouteRecordRaw[] = [];
   // 加入全部路由
@@ -8,7 +11,6 @@ export default function (useMenus: any[]): RouteRecordRaw[] {
     const routeModule = require("@/router/main" + filePath.split(".")[1]);
     allRoutes.push(routeModule.default);
   });
-  console.log(useMenus);
   // 递归函数 获取可点击部分的url，并进行筛选
   function findRouteFun(useMenus: any[]) {
     for (const menu of useMenus) {
@@ -17,13 +19,40 @@ export default function (useMenus: any[]): RouteRecordRaw[] {
       } else if (menu.type === 2) {
         const route = allRoutes.find((item) => item.path === menu.url);
         if (route) {
+          if (!firstMenu) {
+            firstMenu = menu;
+          }
           routes.push(route);
         }
       }
     }
   }
   findRouteFun(useMenus);
-  console.log(routes);
-
   return routes;
 }
+
+export function pathMapToMenu(
+  useMenus: any[],
+  path: string,
+  breadCrumbList?: BreadCrumbItemType[]
+): any {
+  for (const menu of useMenus) {
+    if (menu.type === 1) {
+      const findMenu = pathMapToMenu(menu.children ?? [], path);
+      if (findMenu) {
+        breadCrumbList?.push(menu);
+        breadCrumbList?.push(findMenu);
+        return findMenu;
+      }
+    } else if (menu.type === 2 && menu.url === path) {
+      return menu;
+    }
+  }
+}
+
+export function breadCrumbMapToMenu(useMenus: any[], path: string) {
+  const breadCrumbList: BreadCrumbItemType[] = [];
+  pathMapToMenu(useMenus, path, breadCrumbList);
+  return breadCrumbList;
+}
+export { firstMenu };

@@ -23,7 +23,11 @@ import {
   ElRow,
   ElSelect,
   ElDatePicker,
-  ElOption
+  ElOption,
+  ElBreadcrumbItem,
+  ElBreadcrumb,
+  ElTable,
+  ElTableColumn
 } from "element-plus";
 
 import "element-plus/lib/theme-chalk/base.css";
@@ -51,7 +55,11 @@ const components = [
   ElRow,
   ElSelect,
   ElOption,
-  ElDatePicker
+  ElDatePicker,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn
 ];
 
 export default function (app: App): void {

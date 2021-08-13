@@ -2,19 +2,28 @@ import type { IForm } from "@/common-ui/msi-form";
 const formInfo: IForm = {
   formItem: [
     {
+      filed: "id",
       type: "input",
       label: "id",
       placeholder: "请输入id.."
     },
     {
-      type: "password",
-      label: "密码",
-      placeholder: "请输入密码..."
+      filed: "name",
+      type: "input",
+      label: "用户名",
+      placeholder: "请输入用户名..."
     },
     {
+      filed: "realName",
+      type: "input",
+      label: "真实姓名",
+      placeholder: "请输入真实姓名..."
+    },
+    {
+      filed: "roles",
       type: "select",
       label: "角色",
-      placeholder: "aaaa",
+      placeholder: "请进行选择...",
       options: [
         {
           title: "超级管理员",
@@ -27,6 +36,7 @@ const formInfo: IForm = {
       ]
     },
     {
+      filed: "createTime",
       type: "datapicker",
       label: "创建日期",
       otherOptions: {
@@ -35,6 +45,10 @@ const formInfo: IForm = {
         type: "daterange"
       }
     }
-  ]
+  ],
+  labelWidth: "80px",
+  itemStyle: {
+    padding: "10px 30px"
+  }
 };
 export default formInfo;

@@ -3,6 +3,8 @@ import { createStore, useStore as useVuexStore, Store } from "vuex";
 import { RootStateType, RootWithModule } from "./types";
 import loginModule from "./login";
 
+import systemModule from "./system";
+
 const store = createStore<RootStateType>({
   state() {
     return {
@@ -12,7 +14,7 @@ const store = createStore<RootStateType>({
   getters: {},
   mutations: {},
   actions: {},
-  modules: { login: loginModule }
+  modules: { login: loginModule, system: systemModule }
 });
 
 export function uploadCache() {
