@@ -3,7 +3,7 @@
 ### 线上体验
 
 [Vue3+TS后台管理系统在线体验](http://cms.coderbin.link)
-[GitHub地址](https://github.com/fuzhibin/vue3_ts_cms)
+
 **客官如果觉得还不戳，github上不妨顺手点个 :star:，鼓励一下吧。**
 
 
