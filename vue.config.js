@@ -22,5 +22,7 @@ module.exports = {
       }
     }
   },
-  publicPath: "./"
+  publicPath: "./", // 注意 这里使用 /  如果不行的话  就 ./
+  outputDir: "dist", // 包名
+  assetsDir: "static"
 };

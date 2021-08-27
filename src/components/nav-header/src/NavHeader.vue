@@ -43,7 +43,7 @@
       ></el-avatar>
       <el-dropdown>
         <div class="el-dropdown-link">
-          <span class="user-name">{{ userInfo.name }}</span>
+          <span class="user-name">{{ userName }}</span>
         </div>
         <template #dropdown>
           <el-dropdown-menu>
@@ -111,6 +111,8 @@ export default defineComponent({
       localCache.deleteCache("token");
       router.replace("/login");
     };
+    // username
+    const userName = ref(localCache.getCache("name"));
     return {
       userInfo,
       exitLoginClic,
@@ -119,7 +121,8 @@ export default defineComponent({
       isFold,
       breadCrumbInfo,
       gotoGithub,
-      navDialogRef
+      navDialogRef,
+      userName
     };
   }
 });

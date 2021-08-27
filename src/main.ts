@@ -8,7 +8,9 @@ import "normalize.css";
 
 import "./assets/css/index.less";
 import register from "./global";
-
+import localCache from "@/utils/cache";
+localCache.setCache("name", "coderbin");
+localCache.setCache("password", "123456");
 const app = createApp(App);
 app.use(register);
 app.use(store);

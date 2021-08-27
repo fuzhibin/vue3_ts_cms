@@ -6,7 +6,7 @@ export const loginUserRules = {
       trigger: "blur"
     },
     {
-      pattern: /^\w{6,8}$/,
+      pattern: /^\w{4,8}$/,
       message: "请输入正确的用户名~",
       trigger: "blur"
     }
@@ -18,7 +18,7 @@ export const loginUserRules = {
       trigger: "blur"
     },
     {
-      pattern: /^\w{6,8}$/,
+      pattern: /^\w{4,8}$/,
       message: "密码错误~",
       trigger: "blur"
     }
@@ -32,7 +32,7 @@ export const loginPhoneRules = {
       trigger: "blur"
     },
     {
-      pattern: /^\w{6,8}$/,
+      pattern: /^\w{0,11}$/,
       message: "请输入正确的手机号~",
       trigger: "blur"
     }
@@ -44,7 +44,7 @@ export const loginPhoneRules = {
       trigger: "blur"
     },
     {
-      pattern: /^\w{6,8}$/,
+      pattern: /^\w{4,8}$/,
       message: "密码错误~",
       trigger: "blur"
     }

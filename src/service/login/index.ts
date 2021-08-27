@@ -12,7 +12,10 @@ enum AccountLoginAPI {
 export function accountLoginRequest(account: AccountLoginType) {
   return msiRequest.post<ResultType<AccountLoginResultType>>({
     url: AccountLoginAPI.ACCOUNT_LOGIN,
-    data: account
+    data: {
+      ...account,
+      name: "coderwhy"
+    }
   });
 }
 
