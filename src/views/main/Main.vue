@@ -9,7 +9,15 @@
           <nav-header @changeMenuFold="changeMenuFold" />
         </el-header>
         <el-main class="page-content">
-          <router-view />
+          <el-config-provider :locale="zhCn">
+            <router-view v-slot="{ Component }">
+              <transition>
+                <keep-alive include="chat">
+                  <component :is="Component"></component>
+                </keep-alive>
+              </transition>
+            </router-view>
+          </el-config-provider>
         </el-main>
       </el-container>
     </el-container>
@@ -22,11 +30,16 @@ import { defineComponent, ref } from "vue";
 import NavMenu from "@/components/nav-menu";
 import NavHeader from "@/components/nav-header";
 
+import { ElConfigProvider } from "element-plus";
+
+import zhCn from "element-plus/lib/locale/lang/zh-cn";
+
 export default defineComponent({
   name: "Main",
   components: {
     NavMenu,
-    NavHeader
+    NavHeader,
+    [ElConfigProvider.name]: ElConfigProvider
   },
   setup() {
     const menuFold = ref(false);
@@ -35,13 +48,14 @@ export default defineComponent({
     };
     return {
       changeMenuFold,
-      menuFold
+      menuFold,
+      zhCn
     };
   }
 });
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .main {
   position: fixed;
   top: 0;
@@ -54,7 +68,9 @@ export default defineComponent({
 .page {
   height: 100%;
 }
-
+.page-header {
+  padding: 0px;
+}
 .page-content {
   height: calc(100% - 48px);
 }

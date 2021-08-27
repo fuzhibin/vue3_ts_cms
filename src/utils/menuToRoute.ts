@@ -12,7 +12,7 @@ export default function (useMenus: any[]): RouteRecordRaw[] {
     allRoutes.push(routeModule.default);
   });
   // 递归函数 获取可点击部分的url，并进行筛选
-  function findRouteFun(useMenus: any[]) {
+  function findRouteFun(useMenus: any[]): void {
     for (const menu of useMenus) {
       if (menu.type === 1) {
         findRouteFun(menu.children);
@@ -22,6 +22,7 @@ export default function (useMenus: any[]): RouteRecordRaw[] {
           if (!firstMenu) {
             firstMenu = menu;
           }
+
           routes.push(route);
         }
       }
@@ -50,9 +51,62 @@ export function pathMapToMenu(
   }
 }
 
-export function breadCrumbMapToMenu(useMenus: any[], path: string) {
+export function breadCrumbMapToMenu(
+  useMenus: any[],
+  path: string
+): BreadCrumbItemType[] {
   const breadCrumbList: BreadCrumbItemType[] = [];
   pathMapToMenu(useMenus, path, breadCrumbList);
   return breadCrumbList;
+}
+
+export function jurisdictionList(useMenus: any[]): any {
+  const permissionList = [];
+  for (const menu of useMenus) {
+    if (menu.children) {
+      const permission = jurisdictionList(menu.children);
+      permissionList.push(...permission);
+    } else {
+      if (menu.permission) {
+        permissionList.push(menu.permission);
+      }
+    }
+  }
+  return permissionList;
+}
+
+export function mapFirstMenuList(useMenus: any[]): {
+  value: any;
+  title: any;
+}[] {
+  const menuList = [];
+  for (const menu of useMenus) {
+    if (menu.type === 1) {
+      menuList.push({
+        value: menu.id,
+        title: menu.name
+      });
+    }
+  }
+  menuList.push({
+    value: "",
+    title: "创建一级菜单"
+  });
+  return menuList;
+}
+
+export function mapHalfCheckedKeys(menuList: any[]): number[] {
+  const keyList: number[] = [];
+  const _recursionMapKeys = (menuList: any[]) => {
+    for (const item of menuList) {
+      if (item.children) {
+        _recursionMapKeys(item.children);
+      } else {
+        keyList.push(item.id);
+      }
+    }
+  };
+  _recursionMapKeys(menuList);
+  return keyList;
 }
 export { firstMenu };

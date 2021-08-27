@@ -27,7 +27,20 @@ import {
   ElBreadcrumbItem,
   ElBreadcrumb,
   ElTable,
-  ElTableColumn
+  ElTableColumn,
+  ElPagination,
+  ElImage,
+  ElDialog,
+  ElTree,
+  ElAvatar,
+  ElUpload,
+  ElCard,
+  ElTooltip,
+  ElCollapse,
+  ElCollapseItem,
+  ElDescriptions,
+  ElDescriptionsItem,
+  ElTag
 } from "element-plus";
 
 import "element-plus/lib/theme-chalk/base.css";
@@ -59,7 +72,20 @@ const components = [
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElTable,
-  ElTableColumn
+  ElTableColumn,
+  ElPagination,
+  ElImage,
+  ElDialog,
+  ElTree,
+  ElAvatar,
+  ElUpload,
+  ElCard,
+  ElTooltip,
+  ElCollapse,
+  ElCollapseItem,
+  ElDescriptions,
+  ElDescriptionsItem,
+  ElTag
 ];
 
 export default function (app: App): void {

@@ -58,6 +58,8 @@ export default defineComponent({
     const route = useRoute();
     const userMenus = computed(() => store.state.login.userMenus);
     const menu = pathMapToMenu(userMenus.value, route.path);
+    console.log(menu);
+
     const defaultActive = menu.id + "";
     const menuItemClic = (url: string) => {
       router.push(url);

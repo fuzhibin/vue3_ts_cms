@@ -1,74 +1,115 @@
 <template>
   <div class="user">
-    <msi-form :="formInfo" v-model="formValue" />
+    <page-search
+      :formConfig="formConfigList"
+      @searchKeyValue="searchBtnClic"
+      @searchReset="resetBtnClic"
+    ></page-search>
     <div class="user-tabel">
-      <msi-tabel :propList="propList" :tableData="dataList">
+      <page-tabel
+        :tabelConfig="tableConfigList"
+        pageName="users"
+        ref="pageTabelRef"
+        @editorBtnClic="handleEditorBtnClic"
+        @createBtnClic="handleCreateBtnClic"
+      >
         <template v-slot:status="scope">
-          <el-button type="info">{{
+          <el-button type="success" size="small" plain>{{
             scope.row.enabel === 1 ? "启用" : "停用"
           }}</el-button>
         </template>
-        <template #createAt="scope">
-          <b>{{ scope.row.createAt }}</b>
-        </template>
-        <template #updateAt="scope">
-          <b>{{ scope.row.updateAt }}</b>
-        </template>
-      </msi-tabel>
+      </page-tabel>
     </div>
+    <page-dialog
+      ref="pageDialogRef"
+      pageName="users"
+      :pageDialogConfig="dialogConfigRef"
+      :defaultValue="defaultValue"
+    >
+    </page-dialog>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "vue";
+import { defineComponent, computed } from "vue";
 import { useStore } from "@/store";
 
-import MsiForm from "@/common-ui/msi-form";
-import MsiTabel from "@/common-ui/msi-tabel";
+import PageSearch from "@/components/page-search";
+import PageTabel from "@/components/page-tabel";
+import PageDialog from "@/components/page-dialog";
 
-import formInfo from "./configs/form.config";
+import formConfigList from "./configs/form.config";
+import tableConfigList from "./configs/tabel.config";
+import dialogConfig from "./configs/dialog.config";
+
+import { searchLinkage, operationLinkage } from "@/hooks/pageLinkage";
 export default defineComponent({
   name: "user",
   components: {
-    MsiForm,
-    MsiTabel
+    PageSearch,
+    PageTabel,
+    PageDialog
   },
   setup() {
-    const formValue = ref({
-      id: "",
-      name: "",
-      realName: "",
-      roles: "",
-      createTime: ""
-    });
     const store = useStore();
-    store.dispatch("system/userListAction", {
-      url: "/users/list",
-      queryInfo: {
-        offset: 0,
-        size: 100
-      }
+    // 搜索联动
+    const [pageTabelRef, resetBtnClic, searchBtnClic] = searchLinkage();
+    // 操作联动
+    const formItem = dialogConfig.formItem.find((item) => {
+      return item.field === "password";
     });
-    const propList = [
-      { prop: "name", label: "用户名", minWidth: "100" },
-      { prop: "realname", label: "真实性名", minWidth: "100" },
-      { prop: "cellphone", label: "手机号码", minWidth: "100" },
-      { prop: "enable", label: "状态", minWidth: "100", slotName: "status" },
-      {
-        prop: "createAt",
-        label: "创建时间",
-        minWidth: "250",
-        slotName: "createAt"
-      },
-      {
-        prop: "updateAt",
-        label: "更新时间",
-        minWidth: "250",
-        slotName: "createAt"
-      }
-    ];
-    const dataList = computed(() => store.state.system.userList);
-    return { formInfo, formValue, propList, dataList };
+    const editorCallback = () => {
+      formItem!.isHidden = true;
+    };
+    const createCallback = () => {
+      formItem!.isHidden = false;
+    };
+    const [
+      pageDialogRef,
+      defaultValue,
+      handleEditorBtnClic,
+      handleCreateBtnClic
+    ] = operationLinkage(editorCallback, createCallback);
+    // 对配置文件进行操作
+
+    const dialogConfigRef = computed(() => {
+      const departmentItem = dialogConfig.formItem.find((item) => {
+        return item.field === "departmentId";
+      });
+      const departmentList = store.state.departmentList.map((item) => {
+        return {
+          title: item.name,
+          value: item.id
+        };
+      });
+      const roleItem = dialogConfig.formItem.find((item) => {
+        return item.field === "roleId";
+      });
+      const roleList = store.state.roleList.map((item) => {
+        return {
+          title: item.name,
+          value: item.id
+        };
+      });
+      departmentItem!.options = departmentList;
+      roleItem!.options = roleList;
+      return dialogConfig;
+    });
+
+    // 编辑 新建按钮的点击
+
+    return {
+      pageTabelRef,
+      formConfigList,
+      tableConfigList,
+      searchBtnClic,
+      resetBtnClic,
+      dialogConfigRef,
+      handleEditorBtnClic,
+      handleCreateBtnClic,
+      pageDialogRef,
+      defaultValue
+    };
   }
 });
 </script>
@@ -76,8 +117,6 @@ export default defineComponent({
 <style scoped lang="less">
 .main {
   .user-tabel {
-    background-color: #fff;
-    padding: 20px;
     margin-top: 20px;
     border-radius: 10px;
   }

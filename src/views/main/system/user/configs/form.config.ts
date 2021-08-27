@@ -2,41 +2,47 @@ import type { IForm } from "@/common-ui/msi-form";
 const formInfo: IForm = {
   formItem: [
     {
-      filed: "id",
+      field: "id",
       type: "input",
       label: "id",
-      placeholder: "请输入id.."
+      placeholder: "请输入id..."
     },
     {
-      filed: "name",
+      field: "name",
       type: "input",
       label: "用户名",
       placeholder: "请输入用户名..."
     },
     {
-      filed: "realName",
+      field: "realname",
       type: "input",
       label: "真实姓名",
       placeholder: "请输入真实姓名..."
     },
     {
-      filed: "roles",
+      field: "cellphone",
+      type: "input",
+      label: "手机号码",
+      placeholder: "请输入手机号码..."
+    },
+    {
+      field: "enable",
       type: "select",
-      label: "角色",
+      label: "状态",
       placeholder: "请进行选择...",
       options: [
         {
-          title: "超级管理员",
-          value: "superadmin"
+          title: "停用",
+          value: 1
         },
         {
-          title: "管理员",
-          value: "admin"
+          title: "启用",
+          value: 0
         }
       ]
     },
     {
-      filed: "createTime",
+      field: "createAt",
       type: "datapicker",
       label: "创建日期",
       otherOptions: {
@@ -46,9 +52,12 @@ const formInfo: IForm = {
       }
     }
   ],
-  labelWidth: "80px",
+  labelWidth: "120px",
   itemStyle: {
-    padding: "10px 30px"
+    padding: "10px 40px"
+  },
+  colLayout: {
+    span: 8
   }
 };
 export default formInfo;

@@ -8,7 +8,3 @@ export interface AccountLoginResultType {
   name: string;
   token: string;
 }
-export interface ResultType<T = any> {
-  code: number;
-  data: T;
-}

@@ -1,16 +1,18 @@
-type InputType = "input" | "select" | "password" | "datapicker";
+type InputType = "input" | "select" | "password" | "datapicker" | "upload";
 
 export interface IFormItemType {
-  filed: string;
+  field: string;
   type: InputType;
   label: string;
   rules?: any[];
   placeholder?: string;
   options?: any[];
   otherOptions?: any;
+  isHidden?: boolean;
 }
 
 interface colLayoutType {
+  span?: number;
   xs?: number;
   sm?: number;
   md?: number;

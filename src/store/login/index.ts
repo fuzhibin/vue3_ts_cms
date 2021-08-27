@@ -8,7 +8,7 @@ import {
 } from "@/service/login";
 import { AccountLoginType } from "@/service/login/types";
 import localCache from "@/utils/cache";
-import menuToRoute from "@/utils/menuToRoute";
+import menuToRoute, { jurisdictionList } from "@/utils/menuToRoute";
 
 import { RootStateType } from "../types";
 import { LoginStateType } from "./types";
@@ -18,7 +18,8 @@ const loginModule: Module<LoginStateType, RootStateType> = {
     return {
       token: "",
       userInfo: {},
-      userMenus: []
+      userMenus: [],
+      permissionList: []
     };
   },
   getters: {},
@@ -35,6 +36,9 @@ const loginModule: Module<LoginStateType, RootStateType> = {
       menusInfo.forEach((item) => {
         router.addRoute("main", item);
       });
+
+      const permissionList = jurisdictionList(payload);
+      state.permissionList = permissionList;
     }
   },
   actions: {
@@ -44,6 +48,8 @@ const loginModule: Module<LoginStateType, RootStateType> = {
       const { id, token } = loginResult.data;
       context.commit("changeToken", token);
       localCache.setCache("token", token);
+
+      context.dispatch("getInitDataAction", null, { root: true });
       // 登陆后用户信息
       const userInfoResult = await userInfoRequest(id);
       context.commit("changeUserInfo", userInfoResult.data);
@@ -59,6 +65,7 @@ const loginModule: Module<LoginStateType, RootStateType> = {
       const token = localCache.getCache("token");
       if (token) {
         context.commit("changeToken", token);
+        context.dispatch("getInitDataAction", null, { root: true });
       }
       const userInfo = localCache.getCache("userInfo");
       if (userInfo) {

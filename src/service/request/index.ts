@@ -84,6 +84,18 @@ class MsiRequest {
       method: "POST"
     });
   }
+  delete<T>(config: MsiRequestConfig<T>): Promise<T> {
+    return this.request({
+      ...config,
+      method: "DELETE"
+    });
+  }
+  patch<T>(config: MsiRequestConfig<T>): Promise<T> {
+    return this.request({
+      ...config,
+      method: "PATCH"
+    });
+  }
 }
 
 export default MsiRequest;

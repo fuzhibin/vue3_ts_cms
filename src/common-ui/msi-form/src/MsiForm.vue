@@ -1,20 +1,18 @@
 <template>
   <div class="msi-form">
     <div class="title">
-      <slot name="title">
-        <h2>搜索</h2>
-      </slot>
+      <slot name="title"></slot>
     </div>
     <el-form :label-width="labelWidth">
       <el-row>
         <template v-for="item in formItem" :key="item.label">
-          <el-col :="colLayout">
+          <el-col :="colLayout" v-if="!item.isHidden">
             <el-form-item :label="item.label" :style="itemStyle">
               <template v-if="item.type === 'input'">
                 <el-input
                   :placeholder="item.placeholder"
                   :rules="item.rules"
-                  v-model="formData[item.filed]"
+                  v-model="formData[item.field]"
                   v-bind="item.otherOptions"
               /></template>
               <template v-else-if="item.type === 'password'">
@@ -22,7 +20,7 @@
                   show-password
                   :rules="item.rules"
                   :placeholder="item.placeholder"
-                  v-model="formData[item.filed]"
+                  v-model="formData[item.field]"
                   v-bind="item.otherOptions"
               /></template>
               <template v-else-if="item.type === 'select'">
@@ -30,9 +28,10 @@
                   :placeholder="
                     item.placeholder ? item.placeholder : '请选择..'
                   "
+                  style="width: 100%"
                   v-bind="item.otherOptions"
                   :rules="item.rules"
-                  v-model="formData[item.filed]"
+                  v-model="formData[item.field]"
                 >
                   <el-option
                     v-for="option in item.options"
@@ -45,9 +44,13 @@
               <template v-else-if="item.type === 'datapicker'">
                 <el-date-picker
                   v-bind="item.otherOptions"
-                  v-model="formData[item.filed]"
+                  style="width: 100%"
+                  v-model="formData[item.field]"
                   :rules="item.rules"
                 />
+              </template>
+              <template v-else-if="item.type === 'upload'">
+                <msi-upload v-model="formData[item.field]"></msi-upload>
               </template>
             </el-form-item>
           </el-col>
@@ -55,10 +58,7 @@
       </el-row>
     </el-form>
     <div class="footer">
-      <slot name="footer">
-        <el-button type="primary">提交</el-button>
-        <el-button>重置</el-button>
-      </slot>
+      <slot name="footer"></slot>
     </div>
   </div>
 </template>
@@ -67,11 +67,14 @@
 import { defineComponent, PropType, ref, watch } from "vue";
 import type { IFormItemType } from "../types/types";
 
+import MsiUpload from "@/common-ui/msi-upload";
+
 export default defineComponent({
-  name: "index",
+  name: "MsiForm",
   emits: ["update:modelValue"],
+  components: { MsiUpload },
   props: {
-    moduleValue: {
+    modelValue: {
       type: Object,
       default: () => ({})
     },
@@ -99,8 +102,7 @@ export default defineComponent({
     }
   },
   setup(props, { emit }) {
-    const formData = ref({ ...props.moduleValue });
-    console.log(formData.value);
+    const formData = ref({ ...props.modelValue });
 
     watch(
       formData,
@@ -117,19 +119,25 @@ export default defineComponent({
 <style lang="less" scoped>
 .msi-form {
   padding-top: 20px;
-  padding-bottom: 0.1px;
+  padding-bottom: 20px;
   width: 100%;
   background-color: #fff;
   border-radius: 10px;
-  h2 {
+  .title {
     text-align: center;
     margin-top: 0;
     margin-bottom: 10px;
   }
   .footer {
-    margin-bottom: 20px;
     margin-right: 100px;
     text-align: right;
+  }
+  .upload-box {
+    display: flex;
+    button {
+      text-align: center;
+      width: 100px;
+    }
   }
 }
 </style>

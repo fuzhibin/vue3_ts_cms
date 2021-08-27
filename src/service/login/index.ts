@@ -1,6 +1,7 @@
 import { msiRequest } from "../index";
 
-import { AccountLoginType, ResultType, AccountLoginResultType } from "./types";
+import { ResultType } from "../types";
+import { AccountLoginType, AccountLoginResultType } from "./types";
 
 enum AccountLoginAPI {
   ACCOUNT_LOGIN = "/login",

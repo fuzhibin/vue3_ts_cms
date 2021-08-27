@@ -6,7 +6,19 @@ module.exports = {
         "@": path.resolve(__dirname, "src"),
         view: "@/view",
         router: "@/router",
-        components: "@/components"
+        components: "@/components",
+        assets: "@/assets"
+      }
+    }
+  },
+  devServer: {
+    proxy: {
+      "/api": {
+        target: "http://152.136.185.210:4000",
+        pathRewrite: {
+          "^/api": ""
+        },
+        changeOrigin: true
       }
     }
   }
