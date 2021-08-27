@@ -21,5 +21,8 @@ module.exports = {
         changeOrigin: true
       }
     }
-  }
+  },
+  assetsDir: "static",
+  parallel: false,
+  publicPath: "./"
 };
