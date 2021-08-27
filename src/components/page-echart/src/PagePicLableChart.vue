@@ -3,7 +3,8 @@
     <msi-echarts
       :options="option"
       :zoom="1.176471"
-      :contentStyle="{ width: '800px', height: '420px' }"
+      width="800px"
+      height="420px"
     ></msi-echarts>
   </div>
 </template>
@@ -36,7 +37,8 @@ export default defineComponent({
           bottom: 10,
           left: "center",
           textStyle: {
-            fontSize: 15,
+            fontSize: 13,
+            fontWeight: 700,
             width: 50,
             overflow: "truncate",
             ellipsis: "..."
@@ -50,7 +52,7 @@ export default defineComponent({
             selectedMode: "single",
             data: props.optionData,
             label: {
-              fontSize: 15
+              fontSize: 13
             },
             emphasis: {
               itemStyle: {

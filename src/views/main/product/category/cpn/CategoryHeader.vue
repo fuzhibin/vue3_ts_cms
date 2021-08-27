@@ -1,7 +1,8 @@
 <template>
   <div class="category-header">
-    <el-collapse>
-      <el-collapse-item title="销量前十" name="1">
+    <el-collapse class="category-box">
+      <h3 class="category-title">销量前十</h3>
+      <el-collapse-item name="1">
         <page-pic-lable-chart :optionData="chartsData" />
       </el-collapse-item>
     </el-collapse>
@@ -27,4 +28,16 @@ export default defineComponent({
 });
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.category-box {
+  position: relative;
+  cursor: pointer;
+  .category-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -5px);
+    z-index: 10000;
+  }
+}
+</style>
