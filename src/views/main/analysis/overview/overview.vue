@@ -59,18 +59,26 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-.technology-stacks {
-  li {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 30px;
-    a {
-      margin-left: 20px;
-      font-weight: 500;
-      text-decoration: none;
-      color: #409eff;
+.overview {
+  color: #57606a;
+  .technology-stacks {
+    margin-bottom: 30px;
+    li {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 30px;
+      a {
+        margin-left: 20px;
+        font-weight: 500;
+        text-decoration: none;
+        color: #409eff;
+      }
     }
   }
-  margin-bottom: 30px;
+  pre {
+    font-size: 18px;
+    font-weight: 600;
+    background: #dee1e6;
+  }
 }
 </style>

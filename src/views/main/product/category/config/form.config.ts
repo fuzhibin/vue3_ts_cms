@@ -19,9 +19,6 @@ const FormConfig: IForm = {
       }
     }
   ],
-  colLayout: {
-    span: 8
-  },
   itemStyle: {
     padding: "10px 40px"
   }

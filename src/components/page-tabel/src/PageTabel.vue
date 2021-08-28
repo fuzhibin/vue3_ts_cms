@@ -5,8 +5,17 @@
       :tableData="dataList"
       :dataCount="dataCount"
       v-model:page="pageInfo"
+      @handleMultipleChoice="receiveMultipleChoice"
     >
       <template v-slot:headerHandler>
+        <el-button
+          type="success"
+          plain
+          v-if="isDelete && multipleChoiceData.length > 1"
+          @click="deleteMultipleChoice"
+        >
+          删除多条
+        </el-button>
         <el-button
           type="success"
           plain
@@ -120,8 +129,6 @@ export default defineComponent({
     );
     // 编辑按钮 & 删除按钮
     const handleEditorClick = (data: any) => {
-      console.log(data);
-
       emit("editorBtnClic", data);
     };
     const handleCreateClick = () => {
@@ -132,6 +139,16 @@ export default defineComponent({
         pageName: props.pageName,
         id: data.id
       });
+    };
+    // 处理多选按钮
+    const multipleChoiceData = ref<any[]>([]);
+    const receiveMultipleChoice = (value: any[]) => {
+      multipleChoiceData.value = value;
+    };
+    const deleteMultipleChoice = () => {
+      for (const data of multipleChoiceData.value!) {
+        handleDeleteClick(data);
+      }
     };
     return {
       dataList,
@@ -144,7 +161,10 @@ export default defineComponent({
       isDelete,
       handleEditorClick,
       handleDeleteClick,
-      handleCreateClick
+      handleCreateClick,
+      multipleChoiceData,
+      receiveMultipleChoice,
+      deleteMultipleChoice
     };
   }
 });

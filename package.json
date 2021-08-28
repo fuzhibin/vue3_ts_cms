@@ -36,6 +36,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "babel-plugin-import": "^1.13.3",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "element-plus": "^1.0.2-beta.65",

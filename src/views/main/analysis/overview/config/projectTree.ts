@@ -1,5 +1,5 @@
 const tree = `
-E:.
+vue3_ts_cms
 │  .browserslistrc
 │  .editorconfig
 │  .env.development

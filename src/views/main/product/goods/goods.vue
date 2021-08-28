@@ -15,9 +15,12 @@
         </el-image>
       </template>
       <template v-slot:status="scope">
-        <el-button type="success" size="small" plain>{{
-          scope.row.status === 1 ? "启用" : "停用"
-        }}</el-button>
+        <el-button
+          :type="scope.row.status === 2 ? 'danger' : 'success'"
+          size="small"
+          plain
+          >{{ scope.row.status === 2 ? "启用" : "停用" }}</el-button
+        >
       </template>
     </page-tabel>
     <page-dialog

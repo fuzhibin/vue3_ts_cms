@@ -105,10 +105,11 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  emits: ["update:page"],
+  emits: ["update:page", "handleMultipleChoice"],
   setup(props, { emit }) {
+    // 判断是否全部选中
     const handleSelectionChange = (value: any) => {
-      console.log("handleSelectionChange:", value);
+      emit("handleMultipleChoice", value);
     };
     const handleSizeChange = (val: number) => {
       emit("update:page", { ...props.page, pageSize: val });
