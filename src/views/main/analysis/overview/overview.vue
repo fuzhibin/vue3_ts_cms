@@ -2,8 +2,9 @@
   <div class="overview">
     <msi-card title="关于">
       <span>
-        VueTsCMS 是基于 Vue3、Vuex、VueRouter、Vite、 ElementPlus
-        、TypeScript、Echart5 等后台系统解决方案。
+        <b>VueTsCMS</b> 是基于<b
+          >Vue3、Vuex、VueRouter、VueCLI、 ElementPlus 、TypeScript、Echart5 </b
+        >等后台系统解决方案。
       </span>
     </msi-card>
     <msi-card title="技术栈">

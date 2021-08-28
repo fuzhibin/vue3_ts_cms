@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<title>#Clock - JavaScript</title>
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+  <div class="toast" data-type="pause">
+    <p>时钟已停止。</p><span>关闭</span>
+  </div>
+  <div class="toast" data-type="live">
+    <p>时钟现在是实时的。</p><span>关闭</span>
+  </div>
+  <div class="container">
+    <div class="top">
+      <p id="pause">暂停</p>
+      <p id="reset">开始</p>
+    </div>
+    <div class="clock-container">
+      <div class="hours"> <span>时</span>
+        <p id="hour">00</p>
+      </div>
+      <div class="colon"></div>
+      <div class="minutes"> <span>分</span>
+        <p id="minute">00</p>
+      </div>
+      <div class="colon"></div>
+      <div class="seconds"><span>秒</span>
+        <p id="second">00</p>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+
+</body>
+</html>

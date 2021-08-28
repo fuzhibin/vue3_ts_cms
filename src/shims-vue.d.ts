@@ -5,6 +5,7 @@ declare module "*.vue" {
   export default component;
 }
 
+declare module "kuan-vue-flip-clock";
 declare module "*.json";
 declare module "*.png";
 declare module "*.jpg";
