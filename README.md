@@ -2,7 +2,7 @@
 
 > ### 1.线上体验
 
-[Vue3+TS后台管理系统在线体验](http://cms.coderbin.link)
+[Vue3+TS后台管理系统在线体验](http://cms.nanxing.ltd)
 
 **客官如果觉得还不戳，github上不妨顺手点个 :star:，鼓励一下吧。**
 
@@ -27,7 +27,7 @@ npm run serve
 
 > ### 3.项目功能（部分展示）
 
-#### 3.1 登陆页面 （默认用户&密码：coderbin，123456）
+#### 3.1 登陆页面 （默认用户&密码：nanxing，123456）
 
 ![image-20210827235245708](https://img-blog.csdnimg.cn/972393c864c74d1cb3f368ab88246dcc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5b-Y5b-Y56KO5paMYmlu,size_20,color_FFFFFF,t_70,g_se,x_16)
 
