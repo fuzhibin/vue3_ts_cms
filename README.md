@@ -33,15 +33,11 @@ npm run serve
 
 #### 3.2 页面展示 （侧边菜单 - 技术栈展示）
 
-![image-20210827235836987](https://gitee.com/coderfzb/typora-imges/raw/master/project_images%20/image-20210827235836987.png)
 
 #### 3.3系统管理（搜索联动）
 
-![image-20210827235923079](https://gitee.com/coderfzb/typora-imges/raw/master/project_images%20/image-20210827235923079.png)
 
 #### 3.4 商品数据展示（可视化页面）
-
-![image-20210828000049336](https://gitee.com/coderfzb/typora-imges/raw/master/project_images%20/image-20210828000049336.png)
 
 > ### 4.项目提交
 
